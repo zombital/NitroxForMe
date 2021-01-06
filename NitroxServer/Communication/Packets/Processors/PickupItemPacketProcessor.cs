@@ -7,13 +7,13 @@ namespace NitroxServer.Communication.Packets.Processors
 {
     class PickupItemPacketProcessor : AuthenticatedPacketProcessor<PickupItem>
     {
-        private readonly EntityManager entityManager;
+        private readonly WorldEntityManager worldEntityManager;
         private readonly PlayerManager playerManager;
         private readonly SimulationOwnershipData simulationOwnershipData;
 
-        public PickupItemPacketProcessor(EntityManager entityManager, PlayerManager playerManager, SimulationOwnershipData simulationOwnershipData)
+        public PickupItemPacketProcessor(WorldEntityManager worldEntityManager, PlayerManager playerManager, SimulationOwnershipData simulationOwnershipData)
         {
-            this.entityManager = entityManager;
+            this.worldEntityManager = worldEntityManager;
             this.playerManager = playerManager;
             this.simulationOwnershipData = simulationOwnershipData;
         }
@@ -26,8 +26,8 @@ namespace NitroxServer.Communication.Packets.Processors
                 SimulationOwnershipChange simulationOwnershipChange = new SimulationOwnershipChange(packet.Id, serverId, NitroxModel.DataStructures.SimulationLockType.TRANSIENT);
                 playerManager.SendPacketToAllPlayers(simulationOwnershipChange);
             }
-            
-            entityManager.PickUpEntity(packet.Id);
+
+            worldEntityManager.PickUpEntity(packet.Id);
             playerManager.SendPacketToOtherPlayers(packet, player);
         }
     }

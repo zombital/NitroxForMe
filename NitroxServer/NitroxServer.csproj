@@ -161,6 +161,7 @@
     <Compile Include="ConsoleCommands\WhisperCommand.cs" />
     <Compile Include="Exceptions\DuplicateRegistrationException.cs" />
     <Compile Include="GameLogic\Bases\BaseManager.cs" />
+    <Compile Include="GameLogic\Entities\EntityRegistry.cs" />
     <Compile Include="GameLogic\Entities\NitroxEntitySlot.cs" />
     <Compile Include="GameLogic\Entities\Spawning\EntitySpawnPointFactory.cs" />
     <Compile Include="GameLogic\EscapePodData.cs" />
@@ -187,7 +188,7 @@
     <Compile Include="GameLogic\GameData.cs" />
     <Compile Include="GameLogic\ConnectionAssets.cs" />
     <Compile Include="GameLogic\Entities\EntityData.cs" />
-    <Compile Include="GameLogic\Entities\EntityManager.cs" />
+    <Compile Include="GameLogic\Entities\WorldEntityManager.cs" />
     <Compile Include="GameLogic\Entities\EntitySimulator.cs" />
     <Compile Include="GameLogic\Entities\Spawning\BatchEntitySpawner.cs" />
     <Compile Include="GameLogic\Entities\Spawning\DeterministicBatchGenerator.cs" />

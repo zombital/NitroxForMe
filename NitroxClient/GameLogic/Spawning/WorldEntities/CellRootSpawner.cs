@@ -1,14 +1,14 @@
 ﻿using NitroxClient.MonoBehaviours;
 using NitroxModel.DataStructures;
-using NitroxModel.DataStructures.GameLogic;
+using NitroxModel.DataStructures.GameLogic.Entities;
 using NitroxModel.DataStructures.Util;
 using UnityEngine;
 
-namespace NitroxClient.GameLogic.Spawning
+namespace NitroxClient.GameLogic.Spawning.WorldEntities
 {
-    public class CellRootSpawner : IEntitySpawner
+    public class CellRootSpawner : IWorldEntitySpawner
     {
-        public Optional<GameObject> Spawn(Entity entity, Optional<GameObject> parent, EntityCell cellRoot)
+        public Optional<GameObject> Spawn(WorldEntity entity, Optional<GameObject> parent, EntityCell cellRoot)
         {
             NitroxInt3 cellId = entity.AbsoluteEntityCell.CellId;
             NitroxInt3 batchId = entity.AbsoluteEntityCell.BatchId;

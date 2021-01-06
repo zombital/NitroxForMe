@@ -78,7 +78,7 @@ namespace NitroxServer.Communication.Packets.Processors
                 player.SubRootId,
                 player.Stats,
                 GetRemotePlayerData(player),
-                world.EntityManager.GetGlobalRootEntities(),
+                world.WorldEntityManager.GetGlobalRootEntities(),
                 simulations,
                 world.GameMode,
                 player.Permissions);

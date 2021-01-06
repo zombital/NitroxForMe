@@ -1,4 +1,5 @@
 ﻿using System;
+using NitroxModel.DataStructures.GameLogic.Entities;
 using ProtoBufNet;
 
 namespace NitroxModel.DataStructures.GameLogic
@@ -26,7 +27,7 @@ namespace NitroxModel.DataStructures.GameLogic
         }
 
         public NitroxTransform Parent;
-        public Entity Entity;
+        public WorldEntity Entity;
         public NitroxVector3 Position
         {
             get 
@@ -77,7 +78,7 @@ namespace NitroxModel.DataStructures.GameLogic
         /// <summary>
         /// NitroxTransform is always attached to an Entity
         /// </summary>
-        public NitroxTransform(NitroxVector3 localPosition, NitroxQuaternion localRotation, NitroxVector3 scale, Entity entity)
+        public NitroxTransform(NitroxVector3 localPosition, NitroxQuaternion localRotation, NitroxVector3 scale, WorldEntity entity)
         {
             LocalPosition = localPosition;
             LocalRotation = localRotation;

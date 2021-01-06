@@ -6,6 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NitroxModel.Core;
 using NitroxModel.DataStructures;
 using NitroxModel.DataStructures.GameLogic;
+using NitroxModel.DataStructures.GameLogic.Entities;
 using NitroxModel.DataStructures.Util;
 using NitroxServer.GameLogic;
 using NitroxServer.GameLogic.Bases;
@@ -269,8 +270,14 @@ namespace NitroxTest.Serialization
             {
                 for (int index = 0; index < worldData.EntityData.Entities.Count; index++)
                 {
-                    Entity entity = worldData.EntityData.Entities[index];
-                    Entity entityAfter = worldDataAfter.EntityData.Entities[index];
+                    Entity before = worldData.EntityData.Entities[index];
+                    Entity after = worldDataAfter.EntityData.Entities[index];
+
+                    Assert.IsInstanceOfType(before, typeof(WorldEntity));
+                    Assert.IsInstanceOfType(after, typeof(WorldEntity));
+
+                    WorldEntity entity = (WorldEntity)before;
+                    WorldEntity entityAfter = (WorldEntity)after;
 
                     Assert.AreEqual(entity.Transform.LocalPosition, entityAfter.Transform.LocalPosition, "EntityData.Entities.Transform.LocalPosition is not equal");
                     Assert.AreEqual(entity.Transform.LocalRotation, entityAfter.Transform.LocalRotation, "EntityData.Entities.Transform.LocalRotation is not equal");
@@ -281,11 +288,9 @@ namespace NitroxTest.Serialization
                     Assert.AreEqual(entity.ClassId, entityAfter.ClassId, "EntityData.Entities.ClassId is not equal");
                     Assert.AreEqual(entity.SpawnedByServer, entityAfter.SpawnedByServer, "EntityData.Entities.SpawnedByServer is not equal");
                     Assert.AreEqual(entity.WaterParkId, entityAfter.WaterParkId, "EntityData.Entities.WaterParkId is not equal");
-                    Assert.IsTrue(entity.SerializedGameObject.SequenceEqual(entityAfter.SerializedGameObject), "EntityData.Entities.SerializedGameObject is not equal");
                     Assert.AreEqual(entity.ExistsInGlobalRoot, entityAfter.ExistsInGlobalRoot, "EntityData.Entities.ExistsInGlobalRoot is not equal");
                     Assert.AreEqual(entity.ParentId, entityAfter.ParentId, "EntityData.Entities.ParentId is not equal");
                     Assert.AreEqual(entity.Metadata, entityAfter.Metadata, "EntityData.Entities.Metadata is not equal");
-                    Assert.AreEqual(entity.ExistingGameObjectChildIndex, entityAfter.ExistingGameObjectChildIndex, "EntityData.Entities.ExistingGameObjectChildIndex is not equal");
                 }
             }
         }
@@ -320,8 +325,8 @@ namespace NitroxTest.Serialization
                 {
                     Entities = new List<Entity>()
                     {
-                        new Entity(NitroxVector3.Zero, NitroxQuaternion.Identity, NitroxVector3.One, new NitroxTechType("Peeper"), 1, "PeeperClass", false, new NitroxId(), new byte[]{ 0x10, 0x14, 0x0, 0x2, 0x2, 0x2, 0x2 }, false, new NitroxId()),
-                        new Entity(NitroxVector3.One, NitroxQuaternion.Identity, NitroxVector3.One, new NitroxTechType("Peeper"), 1, "PeeperClass", false, new NitroxId(), new byte[]{ 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20 }, true, new NitroxId())
+                        new WorldEntity(NitroxVector3.Zero, NitroxQuaternion.Identity, NitroxVector3.One, new NitroxTechType("Peeper"), 1, "PeeperClass", false, new NitroxId(), null, false, new NitroxId()),
+                        new WorldEntity(NitroxVector3.One, NitroxQuaternion.Identity, NitroxVector3.One, new NitroxTechType("Peeper"), 1, "PeeperClass", false, new NitroxId(), null, true, new NitroxId())
                     }
                 },
                 PlayerData = new PlayerData()

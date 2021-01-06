@@ -1,17 +1,16 @@
 ﻿using NitroxClient.GameLogic.Spawning.Metadata;
 using NitroxClient.MonoBehaviours;
-using NitroxModel.DataStructures.GameLogic;
+using NitroxModel.DataStructures.GameLogic.Entities;
 using NitroxModel.DataStructures.Util;
 using NitroxModel_Subnautica.DataStructures;
-using NitroxModel_Subnautica.Helper;
 using UnityEngine;
 using UWE;
 
-namespace NitroxClient.GameLogic.Spawning
+namespace NitroxClient.GameLogic.Spawning.WorldEntities
 {
-    public class DefaultEntitySpawner : IEntitySpawner
+    public class DefaultWorldEntitySpawner : IWorldEntitySpawner
     {
-        public Optional<GameObject> Spawn(Entity entity, Optional<GameObject> parent, EntityCell cellRoot)
+        public Optional<GameObject> Spawn(WorldEntity entity, Optional<GameObject> parent, EntityCell cellRoot)
         {
             TechType techType = entity.TechType.ToUnity();
 
@@ -40,13 +39,6 @@ namespace NitroxClient.GameLogic.Spawning
             if (parent.HasValue)
             {
                 gameObject.transform.SetParent(parent.Value.transform, true);
-            }
-
-            Optional<EntityMetadataProcessor> metadataProcessor = EntityMetadataProcessor.FromMetaData(entity.Metadata);
-
-            if (metadataProcessor.HasValue)
-            {
-                metadataProcessor.Value.ProcessMetadata(gameObject, entity.Metadata);
             }
 
             return Optional.Of(gameObject);

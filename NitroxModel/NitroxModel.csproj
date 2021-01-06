@@ -50,6 +50,8 @@
     <Compile Include="Core\IAutoFacRegistrar.cs" />
     <Compile Include="Core\NitroxEnvironment.cs" />
     <Compile Include="Core\NitroxServiceLocator.cs" />
+    <Compile Include="DataStructures\GameLogic\Entities\PrefabChildEntity.cs" />
+    <Compile Include="DataStructures\GameLogic\Entities\WorldEntity.cs" />
     <Compile Include="DataStructures\GameLogic\PlantableItemData.cs" />
     <Compile Include="DataStructures\GameLogic\DamageTakenData.cs" />
     <Compile Include="DataStructures\GameLogic\Entities\Metadata\PrecursorDoorwayMetadata.cs" />
